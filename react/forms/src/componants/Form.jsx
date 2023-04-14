@@ -56,11 +56,11 @@ const passwordReminder = (event) => {
             </div>
             <div className="form_input">
             <label htmlFor="password">Password</label>
-            <input type="text" name="password" onChange={changeHandler} />
+            <input type="password" name="password" onChange={changeHandler} />
             </div>
             <div className="form_input">
             <label htmlFor="passwordComfirmation">Confirm password</label>
-            <input type="text" name="passwordConfirmation" onChange={(event) => {
+            <input type="password" name="passwordConfirmation" onChange={(event) => {
                 changeHandler(event);
                 passwordReminder(event);
             }} />
