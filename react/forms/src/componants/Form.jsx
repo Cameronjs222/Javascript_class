@@ -1,53 +1,62 @@
 import React, { useState } from "react";
 
 const Form = (props) => {
-const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-    passwordConfirmationError: ""
-});
+    const [user, setUser] = useState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+        passwordConfirmationError: ""
+    });
 
-const changeHandler = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
-};
+    const changeHandler = (event) => {
+        setUser({ ...user, [event.target.name]: event.target.value });
+    };
 
-const submitHandler = (event) => {
-    if (user.username.length < 2) {
-    document.getElementById("invalid_username").style.display = "block";
-    user.username = ""
-    }
-    if (user.email.length < 2) {
-    document.getElementById("invalid_email").style.display = "block";
-    user.email = ""
-    }
-    if (user.passwordConfirmation !== user.password) {
-    document.getElementById("invalid_password").style.display = "block";
-    user.password = ""
-}
-event.preventDefault();
-const newUser = [user.username, user.email, user.password];
-console.log("Welcome", newUser);
-};
+    const submitHandler = (event) => {
+        if (user.first_name.length < 2) {
+            document.getElementById("invalid_first_name").style.display = "block";
+            user.first_name = ""
+        }
+        if (user.last_name.length < 2) {
+            document.getElementById("invalid_last_name").style.display = "block";
+            user.last_name = ""
+        }
+        if (user.email.length < 2) {
+            document.getElementById("invalid_email").style.display = "block";
+            user.email = ""
+        }
+        if (user.passwordConfirmation !== user.password) {
+            document.getElementById("invalid_password").style.display = "block";
+            user.password = ""
+        }
+        event.preventDefault();
+        const newUser = [user.first_name, user.last_name, user.email, user.password];
+        console.log("Welcome", newUser);
+    };
 
-const passwordReminder = (event) => {
-    let index = event.target.value.length -1
-    if (user.password[index] !== event.target.value[index]){
-        document.getElementById("invalid_password").style.display = "block";
-    }
-    if(user.password.includes(event.target.value)){
-        document.getElementById("invalid_password").style.display = "none";
-
-    }
-}
+    const passwordReminder = (event) => {
+        let index = event.target.value.length - 1;
+        if (user.passwordConfirmation[index] !== event.target.value[index]) {
+            document.getElementById("invalid_password").style.display = "block";
+        }
+        if (user.passwordConfirmation.includes(event.target.value)) {
+            document.getElementById("invalid_password").style.display = "none";
+        }
+    };
     return (
         <div>
             <form action="" onSubmit={submitHandler}>
             <div className="form_input">
-            <label htmlFor="username">Username</label>
-            <input name="username" type="text" onChange={changeHandler} onSubmit={submitHandler} />
-            <span id="invalid_username" style={{display: "none"}}>Username must be at least 2 characters long</span>
+            <label htmlFor="first_name">First name</label>
+            <input name="first_name" type="text" onChange={changeHandler} onSubmit={submitHandler} />
+            <span id="invalid_first_name" style={{display: "none"}}>name must be at least 2 characters long</span>
+            </div>
+            <div className="form_input">
+            <label htmlFor="last_name">Last name</label>
+            <input name="last_name" type="text" onChange={changeHandler} onSubmit={submitHandler} />
+            <span id="invalid_last_name" style={{display: "none"}}>name must be at least 2 characters long</span>
             </div>
             <div className="form_input">
             <label htmlFor="email">Email</label>
@@ -70,7 +79,8 @@ const passwordReminder = (event) => {
             </form>
             <div>
                 <h2>Your form data</h2>
-                <p>Username: {user.username}</p>
+                <p>First name: {user.first_name}</p>
+                <p>Last name: {user.last_name}</p>
                 <p>Email: {user.email}</p>
                 <p>password: {user.password}</p>
             </div>
