@@ -6,10 +6,10 @@ const BoxForm = (props) => {
     const submitHandler = (event) => {
         console.log(event.target[0].value)
         event.preventDefault();
-        setBoxes([...boxes, boxColor])
-        setBoxSize([...boxSize,size])
-        event.target[0].value = ""
-        event.target[1].value = ""
+        setBoxes([...boxes, boxColor]);
+        setBoxSize([...boxSize,size]);
+        event.target[0].value = "";
+        event.target[1].value = "";
     }
     return (
         <div className="container">
