@@ -1,14 +1,15 @@
 import React from "react";
 
 const BoxDisplay = (props) => {
-    const {boxes} = props
+    const {boxes, boxSize} = props
     return (
-        <div>
-            {console.log(props.boxes)}
-            {boxes.map((color) => {
+        <div className="container">
+            {console.log(props.boxSize)}
+            {boxes.map((color, index) => {
                 return (
-                <div className="coloredBox" style={{backgroundColor: color, height: "50px", width: "50px"}}>
+                <div key={index} className="coloredBox" style={{backgroundColor: color, width: boxSize[index]+"px", height: boxSize[index]+"px"}}>
                 </div>
+
                 )
             })}
         </div>
