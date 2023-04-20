@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.tabsContainer {
+  border: 1px solid grey;
+  display: inline-block;
+}
+
+.tabsButtons {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid grey;
+}
+.tabs {
+  margin: 5px;
+  padding: 0px 5px ;
+  border: 2px solid grey;
+  box-shadow:  5px 2px 2px black;
+}

@@ -1,19 +1,17 @@
 import React, {useState} from "react";
-const Tabs = ({tabsData}) => {
-    const [currentTab, setCurrentTab] = useState([])
-    console.log(currentTab)
+const Tabs = ({tabsData, currentTab, setCurrentTab}) => {
+    // const [currentTab, setCurrentTab] = useState([])
 return(
-    <div>
+    <div className="tabsButtons">
         {tabsData.map((tab, index)=>(
-            <a key={index} href="" onClick={ (event) => {
+            <div className="tabs" key={index} onClick={ (event) => {
                 event.preventDefault();
                 setCurrentTab(tab.content)
-                console.log(tab.title,currentTab, index)
             }
                 }>
                 <p>{tab.title}</p>
 
-                </a>
+                </div>
         ))}
     </div>
 )
