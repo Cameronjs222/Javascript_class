@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import './App.css';
-import BoxForm from "./componants/BoxForm"
-import BoxDisplay from './componants/BoxDisplay';
+import BoxForm from "./componants/TodoForm"
+import BoxDisplay from './componants/TodoDisplay';
 
 function App() {
-  const [boxes, setBoxes] = useState([]);
-  const [boxSize, setBoxSize] = useState([])
+  const [todoItems, setItems] = useState([]);
   return (
     <div className="App">
-      <BoxForm boxes={boxes} setBoxes = {setBoxes} boxSize={boxSize} setBoxSize={setBoxSize} />
-      <BoxDisplay boxes = {boxes} boxSize = {boxSize}/>
+      <BoxForm todoItems={todoItems} setItems = {setItems} />
+      <BoxDisplay todoItems = {todoItems} setItems={setItems}/>
     </div>
   );
 }
