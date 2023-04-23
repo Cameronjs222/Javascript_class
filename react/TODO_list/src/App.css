@@ -52,7 +52,13 @@
   gap: 10px;
   margin: auto;
 }
-.input {
+.completed {
+  text-decoration: line-through;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.notCompleted {
   display: flex;
   flex-direction: column;
   align-items: center;

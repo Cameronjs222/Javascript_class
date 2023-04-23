@@ -4,7 +4,7 @@ const TodoForm = (props) => {
     const [boxColor,setBoxColor] = useState("")
     const submitHandler = (event) => {
         event.preventDefault();
-        setItems([...todoItems, {text: boxColor, completed: false}]);
+        setItems([...todoItems, {text: boxColor, completed: false, id: Math.floor(Math.random() * 1000000000)}]);
         event.target[0].value = "";}
     return (
         <div className="container">
