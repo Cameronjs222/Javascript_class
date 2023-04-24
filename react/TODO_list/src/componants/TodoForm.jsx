@@ -12,8 +12,8 @@ const TodoForm = (props) => {
             <div className="input">
             <label htmlFor="boxForm">Add item to your to do list</label>
             <input name="boxForm" onChange={(event) => setBoxColor(event.target.value)} type="text" />
-            </div>
             <button type="submit">Submit</button>
+            </div>
             </form>
         </div>
     )

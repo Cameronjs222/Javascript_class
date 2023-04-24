@@ -54,14 +54,12 @@
 }
 .completed {
   text-decoration: line-through;
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  margin: 10px;
 }
 .notCompleted {
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  margin: 10px
 }
 .todo_items {
   display: flex;
@@ -77,4 +75,12 @@
 
 .italized {
   font-style: italic;
+}
+
+.input{
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
