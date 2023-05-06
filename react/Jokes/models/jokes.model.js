@@ -5,7 +5,6 @@ const jokesSchema = new mongoose.Schema({
     type: String,
     required: [true, "Title is required"],
     minlength: [2, "Title must be at least two characters long"],
-    // ...other validations
   },
   punchLine: {
     type: String,
