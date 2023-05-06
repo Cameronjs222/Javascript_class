@@ -11,8 +11,9 @@ module.exports.findAllJokes = (req, res) => {
 }
 
 module.exports.findOneSingleJoke = (req, res) => {
-    Joke.findOne({ _id: req.params.id })
+    Joke.findOne({ _id: req.params })
         .then(oneSingleJoke => {
+            console.log(oneSingleJoke)
             res.json({ joke: oneSingleJoke })
         })
         .catch((err) => {
@@ -20,6 +21,7 @@ module.exports.findOneSingleJoke = (req, res) => {
         });}
 
 module.exports.createNewJoke = (req, res) => {
+    console.log(req.body)
     Joke.create(req.body)
         .then(newlyCreatedJoke => {
             res.json({ joke: newlyCreatedJoke })
@@ -29,8 +31,9 @@ module.exports.createNewJoke = (req, res) => {
         });}
 
 module.exports.updateExistingJoke = (req, res) => {
+    console.log(req.params, req.body)
     Joke.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params },
         req.body,
         { new: true, runValidators: true }
     )
@@ -42,7 +45,7 @@ module.exports.updateExistingJoke = (req, res) => {
         });}
 
 module.exports.deleteAnExistingJoke = (req, res) => {
-    Joke.deleteOne({ _id: req.params.id })
+    Joke.deleteOne({ _id: req.params })
         .then(result => {
             res.json({ result: result })
         })
