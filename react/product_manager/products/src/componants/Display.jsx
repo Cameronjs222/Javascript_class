@@ -3,17 +3,25 @@ import axios from 'axios';
 
 
 const Display = () => {
-    const [products, setProducts] = useState()
+    const [products, setProducts] = useState([])
     useEffect(() => {
-        console.log("useEffect")
         axios.get('http://localhost:8000/api/products')
         .then(response => {
-            console.log(response)
+            setProducts(response.data.Products)
         })
         .catch(err => console.log(err + " Catch"))
-    })
+    }, [])
+
 return (
-    <div>Display</div>
+    <div>
+        {products.map((item, index) => (
+            <div key={index} className='dispayContainer' style={{border: "2px solid white", padding: "10px"}}>
+                <span className='displayTitle'>{item.Title}</span>
+                <span className='displayPrice' style={{marginLeft: "10px"}}>${item.Price}</span>
+                <p className='displayDescription'>{item.Description}</p>
+            </div>
+        ))}
+    </div>
 )
 }
 
