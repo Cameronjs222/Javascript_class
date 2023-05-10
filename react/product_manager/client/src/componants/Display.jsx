@@ -13,9 +13,9 @@ const Display = () => {
     }, [])
 
 return (
-    <div>
+    <div className='display-container'>
         {products.map((item, index) => (
-            <div key={index} className='dispayContainer' style={{border: "2px solid white", padding: "10px"}}>
+            <div key={index} className='bg-danger bg-opacity-50 dispayContainer' style={{border: "2px solid white", padding: "10px"}}>
                 <span className='displayTitle'>{item.Title}</span>
                 <span className='displayPrice' style={{marginLeft: "10px"}}>${item.Price}</span>
                 <p className='displayDescription'>{item.Description}</p>
