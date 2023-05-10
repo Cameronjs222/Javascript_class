@@ -13,7 +13,6 @@ module.exports.findAllProducts = (req, res) => {
 module.exports.findOneSingleProduct = (req, res) => {
     Product.findOne({ _id: req.params })
         .then(oneSingleProduct => {
-            console.log(oneSingleProduct)
             res.json({ Product: oneSingleProduct })
         })
         .catch((err) => {
