@@ -35,4 +35,11 @@
 .display-container {
   display: flex;
   flex-direction: column-reverse;
+  flex-wrap: wrap;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
 }

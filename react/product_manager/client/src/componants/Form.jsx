@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 
 const Form = (props) => {
     
-
+    const {products, setProducts} = props
     const [Title, setTitle] = useState("");
     const [Price, setPrice] = useState("");
     const [Description, setDescription] = useState("");
@@ -11,13 +11,14 @@ const Form = (props) => {
     const submitHandler = (event) => {
         event.preventDefault()
         console.log(Title)
-        
         axios.post('http://localhost:8000/api/product', {
             Title,
             Price,
             Description
         })
         .then((res) => {
+            console.log("this is the axios.post .then function. We have posted the product.")
+            setProducts([...products, res.data])
             setTitle("")
             setDescription("")
             setPrice("")
