@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, {useState} from 'react'
+import Button from 'react-bootstrap/Button'
 
 const Form = (props) => {
     
@@ -37,7 +38,7 @@ return (
             <input onChange={(e) => setPrice(e.target.value)} name='Price' type="number" />
             <span className='span' htmlFor="Description">Description</span>
             <textarea onChange={(e) => setDescription(e.target.value)} name="Description" id="" cols="30" rows="10"></textarea>
-            <button type='submit'>Submit</button>
+            <Button type='submit'>Submit</Button>
         </div>
         </form>
     </div>
