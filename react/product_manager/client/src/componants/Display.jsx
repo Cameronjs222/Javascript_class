@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const Display = (props) => {
     const {products, setProducts} = props
-    // const [products, setProducts] = useState([])
     useEffect(() => {
         axios.get('http://localhost:8000/api/products')
         .then((res) => {
@@ -22,6 +22,7 @@ return (
                 <span className='displayTitle'>{item.Title}</span>
                 <span className='displayPrice' style={{marginLeft: "10px"}}>${item.Price}</span>
                 <p className='displayDescription'>{item.Description}</p>
+                <Link to={`/products/${item._id}`}>{item.Title}'s page</Link>
             </div>
         ))}
     </div>
