@@ -30,7 +30,7 @@ const ProductForm = (props) => {
         })
         .catch((err) => console.log(err))
     }
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event) => { //As the description form is a text area, this is made to allow the user hit enter and submit the form as expected.
         if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         axios.post('http://localhost:8000/api/product', {

@@ -7,13 +7,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 const UpdateProduct = (props) => {
-    const { id } = useParams(); //this process is identical to the one we used with our Details.js component
+    const { id } = useParams();
     const [Title, setTitle] = useState("");
     const [Price, setPrice] = useState("");
     const [Description, setDescription] = useState("");
     const navigate = useNavigate();
-    // retrieve the current values for this person so we can fill
-    // in the form with what is in the db currently
     useEffect(() => {
         axios.get('http://localhost:8000/api/people/' + id)
             .then(res => {
@@ -32,11 +30,11 @@ const UpdateProduct = (props) => {
         })
             .then(res => {
                 console.log(res);
-                navigate("/"); // this will take us back to the Main.js
+                navigate("/"); 
             })
             .catch(err => console.log(err))
     }
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event) => { //As the description form is a text area, this is made to allow the user hit enter and submit the form as expected.
         if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         axios.patch('http://localhost:8000/api/product/' + id, {
@@ -46,7 +44,7 @@ const UpdateProduct = (props) => {
         })
             .then(res => {
                 console.log(res);
-                navigate("/"); // this will take us back to the Main.js
+                navigate("/"); 
             })
             .catch(err => console.log(err))
     }};
