@@ -36,6 +36,20 @@ const UpdateProduct = (props) => {
             })
             .catch(err => console.log(err))
     }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        axios.patch('http://localhost:8000/api/product/' + id, {
+            Title,
+            Price,
+            Description
+        })
+            .then(res => {
+                console.log(res);
+                navigate("/"); // this will take us back to the Main.js
+            })
+            .catch(err => console.log(err))
+    }};
     return (
         <form onSubmit={updateProduct} action="">
         <Container className='d-flex justify-content-center text-center'>
@@ -58,7 +72,7 @@ const UpdateProduct = (props) => {
                     <Col className='my-4'>
                     <InputGroup>
                         <InputGroup.Text className='' htmlFor="Description">Description</InputGroup.Text>
-                        <Form.Control as="textarea" onChange={(e) => setDescription(e.target.value)} name="Description" id="" cols="100" rows="1" value={Description}></Form.Control>
+                        <Form.Control onKeyDown={handleKeyDown} as="textarea" onChange={(e) => setDescription(e.target.value)} name="Description" id="" cols="100" rows="1" value={Description}></Form.Control>
                     </InputGroup>
                     </Col>
                 </Row>
