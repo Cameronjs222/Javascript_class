@@ -30,9 +30,9 @@ const ProductPage = (props) => {
       <span className='displayTitle'>{productId.Title}</span>
       <span className='displayPrice' style={{marginLeft: "10px"}}>${productId.Price}</span>
       <p className='displayDescription'>{productId.Description}</p>
-      <button onClick={(event)=>{deleteproduct(productId._id)}}>Delete</button>
-      <button onClick={(event)=>navigate("/")}>Home</button>
-      <button onClick={(event)=>navigate(`/product/edit/${productId._id}`)}>Update</button>
+      <button className='bg-dark text-light bg-opacity-50 border-light' onClick={(event)=>{deleteproduct(productId._id)}}>Delete</button>
+      <button className='bg-dark text-light bg-opacity-50 border-light' onClick={(event)=>navigate("/")}>Home</button>
+      <button className='bg-dark text-light bg-opacity-50 border-light' onClick={(event)=>navigate(`/product/edit/${productId._id}`)}>Update</button>
 
 
     </div>
