@@ -30,6 +30,23 @@ const ProductForm = (props) => {
         })
         .catch((err) => console.log(err))
     }
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        axios.post('http://localhost:8000/api/product', {
+            Title,
+            Price,
+            Description
+        })
+        .then((res) => {
+            setProducts([...products, res.data])
+            setTitle("")
+            setDescription("")
+            setPrice("")
+        })
+        .catch((err) => console.log(err))
+        }
+    };
 return (
     <form onSubmit={submitHandler} action="">
     <Container className='d-flex justify-content-center text-center'>
@@ -52,7 +69,7 @@ return (
                 <Col className='my-4'>
                 <InputGroup>
                     <InputGroup.Text className='' htmlFor="Description">Description</InputGroup.Text>
-                    <Form.Control as="textarea" onChange={(e) => setDescription(e.target.value)} name="Description" id="" cols="100" rows="1" value={Description}></Form.Control>
+                    <Form.Control onKeyDown={handleKeyDown} as="textarea" onChange={(e) => setDescription(e.target.value)} name="Description" id="" cols="100" rows="1" value={Description}></Form.Control>
                 </InputGroup>
                 </Col>
             </Row>

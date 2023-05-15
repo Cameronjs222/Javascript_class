@@ -14,7 +14,7 @@ const ProductPage = () => {
     console.log(productId)
     
     return (
-      <div className='bg-danger bg-opacity-50 dispayContainer' style={{border: "2px solid white", padding: "10px"}}>
+      <div className='bg-dark bg-opacity-25 col-6 mx-auto text-light' style={{border: "2px solid white", padding: "10px"}}>
       <span className='displayTitle'>{productId.Title}</span>
       <span className='displayPrice' style={{marginLeft: "10px"}}>${productId.Price}</span>
       <p className='displayDescription'>{productId.Description}</p>

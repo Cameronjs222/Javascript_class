@@ -23,9 +23,6 @@ return (
                     <Row className=''>
                     <Col className='displayTitle'>{item.Title}: ${item.Price}</Col>
                     </Row>
-                    <Row>
-                    <Col className=''>{item.Description}</Col>
-                    </Row>
                     </Link>
                 </Row>
             ))}
