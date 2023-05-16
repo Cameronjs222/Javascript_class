@@ -1,6 +1,6 @@
-import axios from 'axios'
-import React, {useState} from 'react'
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import { useNavigate, useParams } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -8,43 +8,82 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
 const ProductForm = (props) => {
-    
+    const { id } = useParams();
     const {products, setProducts} = props
     const [Title, setTitle] = useState("");
     const [Price, setPrice] = useState("");
     const [Description, setDescription] = useState("");
+    const navigate = useNavigate();
+
+        useEffect(() => {
+        axios.get('http://localhost:8000/api/product/' + id)
+            .then(res => {
+                setTitle(res.data.Title);
+                setPrice(res.data.Price);
+                setDescription(res.data.Description)
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     const submitHandler = (event) => {
         event.preventDefault()
         console.log("hello")
-        axios.post('http://localhost:8000/api/product', {
+        if (id) {
+            axios.patch('http://localhost:8000/api/product/' + id, {
             Title,
             Price,
             Description
         })
-        .then((res) => {
-            setProducts([...products, res.data])
-            setTitle("")
-            setDescription("")
-            setPrice("")
-        })
-        .catch((err) => console.log(err))
+            .then(res => {
+                console.log(res);
+                navigate("/"); 
+            })
+            .catch(err => console.log(err))
+        }
+        else{
+            axios.post('http://localhost:8000/api/product', {
+                Title,
+                Price,
+                Description
+            })
+            .then((res) => {
+                setProducts([...products, res.data])
+                setTitle("")
+                setDescription("")
+                setPrice("")
+            })
+            .catch((err) => console.log(err))
+        }
     }
     const handleKeyDown = (event) => { //As the description form is a text area, this is made to allow the user hit enter and submit the form as expected.
         if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
-        axios.post('http://localhost:8000/api/product', {
+        if (id){
+            axios.patch('http://localhost:8000/api/product/' + id, {
             Title,
             Price,
             Description
         })
-        .then((res) => {
-            setProducts([...products, res.data])
-            setTitle("")
-            setDescription("")
-            setPrice("")
-        })
-        .catch((err) => console.log(err))
+            .then(res => {
+                console.log(res);
+                navigate("/"); 
+            })
+            .catch(err => console.log(err))
+        }
+        else {
+            axios.post('http://localhost:8000/api/product', {
+                Title,
+                Price,
+                Description
+            })
+            .then((res) => {
+                setProducts([...products, res.data])
+                setTitle("")
+                setDescription("")
+                setPrice("")
+            })
+            .catch((err) => console.log(err))
+        }
         }
     };
 return (
