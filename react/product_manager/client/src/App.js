@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Display from './componants/Display';
+import Main from './componants/Main';
 import ProductForm from './componants/ProductForm'
 import ProductPage from './componants/ProductPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -17,7 +17,8 @@ function App() {
       <header className="">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<div><ProductForm products={products} setProducts={setProducts}/><Display products={products} setProducts={setProducts}/></div>} />
+            <Route element={<Main/>} path='/'/>
+            {/* <Route path="/" element={<div><ProductForm products={products} setProducts={setProducts}/><Display products={products} setProducts={setProducts}/></div>} /> */}
             <Route path="/products/:_id" element={<ProductPage products={products} setProducts={setProducts} removeFromDom={removeFromDom}/>}/>
             <Route element={<ProductForm/>} path="/product/edit/:id"/>
           </Routes>
