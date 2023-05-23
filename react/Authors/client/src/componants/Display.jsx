@@ -55,7 +55,7 @@ const Display = (props) => {
                     </tbody>
                 </Table>
             </Container>
-            <Link className='link-light' to={'/authors/add'}>Can't Find Your Store?</Link>
+            <Link className='link-light' to={'/authors/add'}>Add new Author</Link>
         </div>
     );
 };

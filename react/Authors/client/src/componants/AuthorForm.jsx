@@ -11,7 +11,9 @@ const StoreForm = (props) => {
     const { id } = useParams();
     const { authors, setAuthors } = props;
     const [Name, setName] = useState('');
+    const [errors, setErrors] = useState('')
     const navigate = useNavigate();
+    console.log(errors)
 
     useEffect(() => {
         if (id) {
@@ -20,7 +22,9 @@ const StoreForm = (props) => {
                 .then((res) => {
                     setName(res.data.Name);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err)
+                });
         }
     }, []);
     
@@ -37,7 +41,19 @@ const StoreForm = (props) => {
                     console.log(res);
                     navigate('/');
                 })
-                .catch((err) => console.log(err.response.data));
+                .catch((err) => {
+                    // console.log(err.response.data.errors)
+                    console.log(err.response.data)
+                    const errorResponse = err.response.data.errors;
+                    const errorArr = [];
+                    if (errorArr.length > 0){
+                        for (const key of Object.keys(errorResponse)) {
+                            errorArr.push(errorResponse[key].message)
+                        }
+                    }
+                setErrors(errorArr);
+                }
+                );
         } else {
             axios
                 .post('http://localhost:8000/api/authors', {
@@ -48,7 +64,16 @@ const StoreForm = (props) => {
                     setName('');
                     navigate('/');
                 })
-                .catch((err) => console.log(err.response.data.message));
+                .catch((err) => {
+                    // console.log(err.response.data.errors)
+                    const errorResponse = err.response.data.errors;
+                    const errorArr = [];
+                    for (const key of Object.keys(errorResponse)) {
+                        errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+                }
+                );
         }
     };
 
@@ -70,6 +95,7 @@ const StoreForm = (props) => {
                                     value={Name}
                                 />
                             </InputGroup>
+                            <p className='text-danger'>{errors}</p>
                         </Col>
                     </Row>
                     
