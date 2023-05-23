@@ -37,7 +37,7 @@ const StoreForm = (props) => {
                     console.log(res);
                     navigate('/');
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.log(err.response.data));
         } else {
             axios
                 .post('http://localhost:8000/api/authors', {
@@ -48,7 +48,7 @@ const StoreForm = (props) => {
                     setName('');
                     navigate('/');
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.log(err.response.data.message));
         }
     };
 

@@ -25,7 +25,7 @@ module.exports.createNewAuthor = (req, res) => {
         .then((newlyCreatedProduct) =>
             res.json(newlyCreatedProduct)
         )
-        .catch(err => response.status(400).json(err));}
+        .catch(err => res.status(400).json(err));}
 
 module.exports.updateExistingAuthor = (req, res) => {
     Authors.findOneAndUpdate(
@@ -36,7 +36,7 @@ module.exports.updateExistingAuthor = (req, res) => {
         .then(updatedProduct => {
             res.json(updatedProduct)
         })
-        .catch(err => response.status(400).json(err));}
+        .catch(err => res.status(400).json(err));}
 
 module.exports.deleteAnExistingAuthor = (req, res) => {
     Authors.deleteOne({ _id: req.params })
