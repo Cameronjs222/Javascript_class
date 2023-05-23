@@ -10,6 +10,16 @@ module.exports.findAllAuthors = (req, res) => {
         });
 }
 
+module.exports.findAnExistingAuthor = (req, res) => {
+    Authors.findById({ _id: req.params._id })
+        .then((result) => {
+            res.json(result)
+        })
+        .catch((err) => {
+            res.json({ message: 'Something went wrong', error: err })
+        });}
+
+        
 module.exports.createNewAuthor = (req, res) => {
     Authors.create(req.body)
         .then((newlyCreatedProduct) =>

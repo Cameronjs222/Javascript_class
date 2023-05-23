@@ -17,9 +17,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Display authors={authors} setAuthors={setAuthors}  removeFromDom={removeFromDom}/>} path='/'/>
-            <Route element={<authorPage authors={authors} setAuthors={setAuthors}/>} path="/authors/:_id"/>
-            <Route element={<authorForm authors={authors} setAuthors={setAuthors}/>} path="/authors/edit/:id"/>
-            <Route element={<authorForm authors={authors} setAuthors={setAuthors}/>} path="/authors/add"/>
+            <Route element={<AuthorForm authors={authors} setAuthors={setAuthors}/>} path="/authors/edit/:id"/>
+            <Route element={<AuthorForm authors={authors} setAuthors={setAuthors}/>} path="/authors/add"/>
           </Routes>
         </BrowserRouter>
       </header>

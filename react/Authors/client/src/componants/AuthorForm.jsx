@@ -9,54 +9,29 @@ import Container from 'react-bootstrap/Container';
 
 const StoreForm = (props) => {
     const { id } = useParams();
-    const { stores, setStores } = props;
+    const { authors, setAuthors } = props;
     const [Name, setName] = useState('');
-    const [Number, setNumber] = useState('');
-    const [IsOpen, setIsOpen] = useState(false);
-    const [nameError, setNameError] = useState('');
-    const [numberError, setNumberError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
             axios
-                .get('http://localhost:8000/api/stores/' + id)
+                .get('http://localhost:8000/api/authors/' + id)
                 .then((res) => {
                     setName(res.data.Name);
-                    setNumber(res.data.Number);
-                    setIsOpen(res.data.IsOpen);
                 })
                 .catch((err) => console.log(err));
         }
     }, []);
+    
 
     const submitHandler = (event) => {
         event.preventDefault();
 
-        if (Name.length < 3 && Number <= 0 ) {
-            setNumberError('Number must be greater than 0.');
-            setNameError('Name must be at least 3 characters long.');
-            return;
-        }
-
-        if (Name.length < 3) {
-            setNameError('Name must be at least 3 characters long.')
-            return
-        }
-
-        if (Number <= 0) {
-            return;
-        }
-
-        setNameError('');
-        setNumberError('');
-
         if (id) {
             axios
-                .patch('http://localhost:8000/api/stores/' + id, {
+                .patch('http://localhost:8000/api/authors/' + id, {
                     Name,
-                    Number,
-                    IsOpen,
                 })
                 .then((res) => {
                     console.log(res);
@@ -65,16 +40,12 @@ const StoreForm = (props) => {
                 .catch((err) => console.log(err));
         } else {
             axios
-                .post('http://localhost:8000/api/stores', {
+                .post('http://localhost:8000/api/authors', {
                     Name,
-                    Number,
-                    IsOpen,
                 })
                 .then((res) => {
-                    setStores([...stores, res.data]);
+                    setAuthors([...authors, res.data]);
                     setName('');
-                    setIsOpen(false);
-                    setNumber('');
                     navigate('/');
                 })
                 .catch((err) => console.log(err));
@@ -99,41 +70,9 @@ const StoreForm = (props) => {
                                     value={Name}
                                 />
                             </InputGroup>
-                            {nameError && <p className="text-danger">{nameError}</p>}
-                        </Col>
-                        <Col className="my-4">
-                            <InputGroup className="">
-                                <InputGroup.Text className="col-4" htmlFor="Number">
-                                    Number
-                                </InputGroup.Text>
-                                <Form.Control
-                                    size="sm"
-                                    onChange={(e) => setNumber(e.target.value)}
-                                    name="Number"
-                                    type="number"
-                                    value={Number}
-                                />
-                            </InputGroup>
-                            {numberError && <p className="text-danger">{numberError}</p>}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col className="my-4">
-                            <InputGroup>
-                                <Form.Check
-                                    type="switch"
-                                    id="isOpenSwitch"
-                                    label="Click here if your store is open"
-                                    name="isOpen"
-                                    className="text-light"
-                                    checked={IsOpen}
-                                    onChange={(e) => {
-                                        setIsOpen(e.target.checked);
-                                    }}
-                                />
-                            </InputGroup>
-                        </Col>
-                    </Row>
+                    
                     <button className="bg-dark text-light bg-opacity-50 border-light">
                         Submit
                     </button>
